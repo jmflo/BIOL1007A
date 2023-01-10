@@ -1,0 +1,44 @@
+---
+title: "Assignment 2"
+output: 
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+date: "2023-01-10"
+---
+# Welcome!
+<img src= "https://wallpapercave.com/wp/wp2381382.jpg" width="950" height="500" /> 
+
+### The Basics
+What the animals need
+
+Cows  | Chickens |Ducks 
+------|----------|--------
+Grass | Bugs     | Water Bath
+Water | Coop     | Bugs 
+Snacks| Feed     |  Snuggles
+Pets  | Water    | Food
+
+*All* animals need snuggles to have a happy life. It is important to keep them **happy** and __healthy--.
+
+* Important Notes
+  + Make sure they have food and water
+  + Have companions for them
+  + Be Nice to them
+  
+1. Build them a home
+2. Decorate it
+3. Put some food and water in there
+
+### How to Get Started
+[Homesteading 101](http://www.thespruce.com)
+
+###### Extras
+
+superscript^2^
+
+hello~2~
+
+A superscript and subscript.
+$$S=cA^z_1 + z_{2 + x}$$
+`Thank you!`
