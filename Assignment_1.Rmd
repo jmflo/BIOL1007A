@@ -1,0 +1,29 @@
+---
+title: "Assignment 1"
+output: html_document
+date: "2023-01-10"
+---
+
+`git & Github
+Git is version control  
+Version control: keeping and restoring past versions of files. 
+git is version control for my local computer. 
+Github is a free remote website for public storage of projects. 
+Initially set up for programmers to collaborate. 
+Files  
+Good for version control  
+Plain text (.txt)  
+.R scripts. 
+Markdown (.md/Rmd)  
+Text formatting markup language  
+Will learn how to/a way to format plain text. 
+Separate, but will be using in R. 
+-html  
+Bad for version control. 
+Pdf. 
+videos /photos  
+Word doc. 
+Initially set up for collaboration  
+
+
+ 
