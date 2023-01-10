@@ -4,7 +4,7 @@ output: html_document
 date: "2023-01-10"
 ---
 
-`git & Github
+git & Github
 Git is version control  
 Version control: keeping and restoring past versions of files. 
 git is version control for my local computer. 
@@ -23,7 +23,7 @@ Bad for version control.
 Pdf. 
 videos /photos  
 Word doc. 
-Initially set up for collaboration  
+Initially set up for collaboration
 
 
  
