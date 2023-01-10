@@ -19,7 +19,7 @@ Water | Coop     | Bugs
 Snacks| Feed     |  Snuggles
 Pets  | Water    | Food
 
-*All* animals need snuggles to have a happy life. It is important to keep them **happy** and __healthy--.
+*All* animals need snuggles to have a happy life. It is important to keep them **happy** and __healthy__.
 
 * Important Notes
   + Make sure they have food and water
