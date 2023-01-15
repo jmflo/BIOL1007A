@@ -1,0 +1,101 @@
+---
+title: "Assignment 3"
+output: html_document
+date: "2023-01-12"
+---
+
+Question #1
+```{r}
+x<-1.1
+a<-2.2
+b<-3.3
+```
+1.a
+```{r}
+
+z<-x^a^b
+print(z)
+
+
+```
+1.b
+```{r}
+
+z<-((x^a)^b)
+print(z)
+
+```
+
+1.c
+```{r}
+ 
+z<-((3*x^3)+(2*x^2)+1)
+print(z)
+
+```
+
+Question #2
+
+2.a
+```{r}
+
+
+z=c(seq(from=1, to=8), seq(from=7, to=1))
+print(z)
+
+```
+2.b
+```{r}
+
+rep(x=1:5,times=c(1:5))
+
+```
+2.c
+```{r}
+
+x <- rep(x=1:5)
+x <- rep(x=5:1, times=x)
+print(x)
+```
+
+Question #3
+
+```{r}
+queue <- c("sheep", "fox", "owl", "ant")
+```
+
+3.a
+```{r}
+queue <- c(queue, 'serpent')
+print(queue)
+```
+3.b
+```{r}
+queue <- queue[-1]
+print(queue)
+```
+3.c
+```{r}
+queue <- c('donkey', queue[1:4])
+print(queue)
+```
+3.d
+```{r}
+queue <- queue[-5]
+print(queue)
+```
+
+3.e
+```{r}
+queue <- append(queue, "aphid", after=3)
+print(queue)
+```
+3.f
+```{r}
+which(queue=="aphid")
+```
+
+
+
+
+

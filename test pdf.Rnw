@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+
+\section{First header}
+\subsection{Second header}
+\subsubsection{Third header}
+
+Plain text is much the same, even in \LaTeX.
+
+Here is \textbf{bold face}\\
+Here is \textit{italic text}\\
+Here is \texttt{plain text}.
+
+``Use double back ticks and single quotes to start and finish a quotation.''
+
+\begin{itemize}
+  \item first bullet
+  \item second bullet
+  \item third bullet
+\end{itemize}
+
+\begin{enumerate}
+  \item number one
+  \item number two
+  \item number three
+\end{enumerate}
+
+\begin{verbatim}
+This is more convenient for a larger block of verbatim text. 
+This is equivalent to the ``` plain fencing ``` from markdown.
+\end{verbatim}
+
+\begin{quote}
+Again, works better for a much more extensive paragraph of quoted text such as this.
+\end{quote}
+
+<<echo=TRUE>>=
+x <- runif(10)
+y <- runif(10)
+plot(x,y)
+@
+
+% In contrast to R and shell scripts, the character for a comment in LaTeX is the % sign.
+
+Use the ``escape'' sequence to show a percentage sign like this: \%.
+
+\end{document}

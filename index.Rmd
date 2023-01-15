@@ -2,7 +2,7 @@
 title: "BIOL1007A Webpage"
 output: 
   prettydoc::html_pretty:
-    theme: cayman
+    theme: caymen
     highlight: github
 date: "2023-01-10"
 ---
@@ -11,6 +11,11 @@ date: "2023-01-10"
 
 [Assignment 1](Assignment_1.html)  
 [Assignment 2](Assignment_2.html)
+[Assignment 3](Assignment_3.html)
+
+##Weekly Assignments. 
+[Assignment 1](Weekly_Assignment_1.html). 
+
 
 
 
