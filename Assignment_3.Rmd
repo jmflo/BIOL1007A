@@ -50,6 +50,7 @@ print(z)
 rep(x=1:5,times=c(1:5))
 
 ```
+
 2.c
 ```{r}
 
