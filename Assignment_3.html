@@ -387,15 +387,17 @@ print(x)</code></pre>
 <p>Question #3</p>
 <pre class="r"><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)</code></pre>
 <p>3.a</p>
-<pre class="r"><code>queue &lt;- c(queue, &#39;serpent&#39;)
+<pre class="r"><code>queue &lt;- c(queue, &quot;serpent&quot;)
 print(queue)</code></pre>
 <pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code>## or queue[5]&lt;- &quot;serpent&quot; (can use [] even if it isnt there)</code></pre>
 <p>3.b</p>
 <pre class="r"><code>queue &lt;- queue[-1]
 print(queue)</code></pre>
 <pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code>## square brackets have to come after a variable </code></pre>
 <p>3.c</p>
-<pre class="r"><code>queue &lt;- c(&#39;donkey&#39;, queue[1:4])
+<pre class="r"><code>queue &lt;- c(&quot;donkey&quot;, queue[1:4])
 print(queue)</code></pre>
 <pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
 <p>3.d</p>
@@ -406,6 +408,7 @@ print(queue)</code></pre>
 <pre class="r"><code>queue &lt;- append(queue, &quot;aphid&quot;, after=3)
 print(queue)</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
+<pre class="r"><code>## or c(queue[1:3], &quot;aphid&quot;, queue[4])</code></pre>
 <p>3.f</p>
 <pre class="r"><code>which(queue==&quot;aphid&quot;)</code></pre>
 <pre><code>## [1] 4</code></pre>
