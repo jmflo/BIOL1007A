@@ -1,0 +1,72 @@
+---
+title: "Assignment_4"
+output: html_document
+date: "2023-01-17"
+---
+
+
+```{r}
+set.seed(111)
+n_dims<-round(runif(n=1, min=3,max=10))
+
+```
+
+
+```{r}
+# Create a vector of consecutive integers from 1 to n_dims2.
+varA <- 1:n_dims^2
+varA
+```
+
+
+```{r}
+#Use the sample function to randomly reshuffle these values.
+sample(varA)
+
+```
+
+
+```{r}
+#Create a square matrix with these elements AND print out the matrix.
+m<-matrix(data=varA, nrow=n_dims)
+print(m)
+```
+
+
+```{r}
+#Find a function in r to transpose the matrix.
+
+t(m)
+
+```
+
+
+```{r}
+#Print it out again and note how it has changed.
+
+print(t(m)) #the columns and rows have flipped
+
+```
+
+
+```{r}
+#Calculate the sum and the mean of the elements in the first row and then the last row.
+
+sum(m[,1])
+```
+```{r}
+mean(m[,1])
+```
+```{r}
+sum(m[,5])
+```
+```{r}
+mean(m[,5])
+```
+
+
+```{r}
+#Set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value
+
+```
+
