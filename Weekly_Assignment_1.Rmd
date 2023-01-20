@@ -1,8 +1,98 @@
 ---
 title: "Weekly Assignment 1"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+    theme: caymen
+    highlight: github
 date: "2023-01-15"
 ---
+
+# Guide to setting up a Github Webpage!
+
+### Step 1:
+
+Create an account with [Github](https://github.com) 
+
+### Step 2:
+
+* If you are using a mac, you will need to install [homebrew](https://brew.sh) in order to install git.  
+  + Make sure to have good WiFi connection to speed up the process
+  + Open your terminal
+    - You can find it using the search key in the upper right corner of your screen
+  + Copy the code on the homebrew website and paste it into your terminal 
+  + Type in your computer's password when prompted
+    - Nothing will appear, but that is alright! Make sure to press enter when done
+    
+### Step 3:
+
+* When homebrew is done installing, type **brew install git** into your terminal
+
+### Step 4:
+
+* Next you will need to create a repository in Github (repo for short)
+  + Log in your Github account 
+  + On the left side of the homepage, click on **New**
+    - After naming the repo, make sure the following sections match
+      - make sure the file is **public**
+      - check the box for add a **README** file
+      - **None** should be set for gitignore
+      - choose **MIT** for the license 
+      - Create repository 
+  + Go the settings in your repository (not the settings in the upper right corner) and click on pages on the left side of the screen
+    -Under the branch subheading, change **None** to **main** and then save
+    
+### Step 5:
+
+Now it's time to link youe new repo to RStudio!
+
+* In GitHub, go to the main page of your repo and click on the green box that says **Code**
+  + Copy (or clone) that link
+* In RStudio, click the down arrow in the upper right corner and select **New Project**
+  + Select **Version Control** 
+  + Select Git
+  + Paste the url you just copied into the first section
+  + In the second section, name the project exactly as you have it in GitHub
+  + I would recommend saving it in Desktop, but you can save it wherever (avoid Downloads though)
+  + Select **Create Project**
+  
+### Step 6:
+
+* Go to RStudio and click the white page icon with the green plus sign in the upper left corner
+  + Select **RMarkdown**
+  + Name the new file "index", make sure html is marked, and click **OK**
+  + Everything past the "```" on line 9 can be deleted and you can add your own information regarding your webpage
+  + Select **Knit on Save** in the icon section and the press the save symbol right next to it
+    - Name the file "index.Rmd" and save
+    
+### Step 7:
+
+Time to send what we just made to GitHub!
+
+* Click on **Terminal** and write "git status" after yourusername$
+  + After hitting enter, a file in red should appear
+* Type "git add -A"
+  + This ensures that all the documents you have will be added
+  + Check to see if it was added by typing "git status" again
+    - The file name should be green now
+* Now type "git commit -am "added index"
+  + The information inbetween the quotation marks are just notes about the files you are adding 
+* To finish, type "git push"
+
+### Step 8:
+
+Finding your new Webpage!
+
+* Go back to GitHub and go to the **Pages** section of your repo
+* A link will appear under **GitHub Pages**
+  + It might take a few minutes for your webpage to show in GitHub, but no need to worry!
+
+Congradulations on your new webpage!
+  
+  
+  
+
+
+
 
 
 
