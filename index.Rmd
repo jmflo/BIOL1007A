@@ -17,7 +17,8 @@ date: "2023-01-10"
 [Assignment 6](Assignment_6.html)
 
 ## Weekly Assignments    
-[Assignment 1](Weekly_Assignment_1.html) 
+[Assignment 1](Weekly_Assignment_1.html)    
+[Assignment 2](Weekly_Assignemnt_2.html)
 
 ## Notes
 
