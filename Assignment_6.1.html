@@ -10,9 +10,9 @@
 
 
 
-<meta name="date" content="2023-01-21" />
+<meta name="date" content="2023-01-24" />
 
-<title>Weekly_Assignment_2</title>
+<title>Assignment 6</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -349,103 +349,110 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Weekly_Assignment_2</h1>
-<h4 class="date">2023-01-21</h4>
+<h1 class="title toc-ignore">Assignment 6</h1>
+<h4 class="date">2023-01-24</h4>
 
 </div>
 
 
-<pre class="r"><code>### 1. Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>#### 1. Examine the structure of the iris data set. How many observations and variables are in the data set?
 
-newfunc &lt;- function(means= c(10, 45)){
-  df &lt;- data.frame (Type= c(rep(&quot;control&quot;,25), rep(&quot;treatment&quot;, 25)), Value = c(rnorm(25, 10, 1.5), rnorm(25, 45, 2))) 
-  return(df)
-  
-}
+glimpse(iris)</code></pre>
+<pre><code>## Rows: 150
+## Columns: 5
+## $ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
+## $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
+## $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
+## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
+## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
+<pre class="r"><code>#There are 150 observations and 5 variables.
 
-newfunc()</code></pre>
-<pre><code>##         Type     Value
-## 1    control  9.771235
-## 2    control 11.217135
-## 3    control 10.791860
-## 4    control  9.442479
-## 5    control 11.722462
-## 6    control  9.424304
-## 7    control 10.909118
-## 8    control  8.691829
-## 9    control  9.726493
-## 10   control  8.235763
-## 11   control 15.459628
-## 12   control  9.356121
-## 13   control 10.718364
-## 14   control 12.112963
-## 15   control  9.817381
-## 16   control 11.278400
-## 17   control  9.822845
-## 18   control 10.925850
-## 19   control 10.350562
-## 20   control 12.931049
-## 21   control  9.366054
-## 22   control  8.034194
-## 23   control  8.045662
-## 24   control  8.755560
-## 25   control 10.102405
-## 26 treatment 44.426461
-## 27 treatment 42.080116
-## 28 treatment 45.910436
-## 29 treatment 45.369396
-## 30 treatment 43.123012
-## 31 treatment 41.042368
-## 32 treatment 47.135481
-## 33 treatment 45.714267
-## 34 treatment 40.284751
-## 35 treatment 44.641037
-## 36 treatment 46.676573
-## 37 treatment 46.111932
-## 38 treatment 40.892536
-## 39 treatment 48.485142
-## 40 treatment 43.350222
-## 41 treatment 43.863695
-## 42 treatment 43.424859
-## 43 treatment 46.523318
-## 44 treatment 44.948437
-## 45 treatment 47.409388
-## 46 treatment 42.996086
-## 47 treatment 44.521634
-## 48 treatment 41.361270
-## 49 treatment 46.834358
-## 50 treatment 43.887038</code></pre>
-<pre class="r"><code>### 2.
 
-newVar &lt;-newfunc()
-head(newVar)</code></pre>
-<pre><code>##      Type     Value
-## 1 control 10.111492
-## 2 control  9.498782
-## 3 control 10.994611
-## 4 control  8.330340
-## 5 control  8.091444
-## 6 control  9.713071</code></pre>
-<pre class="r"><code>### 3. 
+#### 2. Create a new data frame iris1 that contains only the species virginica and versicolor with sepal lengths longer than 6 cm and sepal widths longer than 2.5 cm. How many observations and variables are in the data set?
 
-anova &lt;- aov(Value ~ Type, data= newVar)
-summary(anova)</code></pre>
-<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  15591   15591    4772 &lt;2e-16 ***
-## Residuals   48    157       3                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>### 4. 
+iris1 &lt;- filter(iris, Species== c(&quot;virginica&quot;, &quot;versicolor&quot;) &amp; Sepal.Length &gt; 6 &amp; Sepal.Width &gt; 2.5)
 
-anova1 &lt;- function(data= newfunc){
-  
- anova &lt;- aov(Value ~ Type, data = newVar)
- p &lt;- summary(anova)[[1]][[&quot;Pr(&gt;F)&quot;]][1]
-  
-  return(p)
-}
-anova1()</code></pre>
-<pre><code>## [1] 1.040629e-49</code></pre>
+#### 3. Now, create a iris2 data frame from iris1 that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the data set?
+
+iris2 &lt;- select(iris1, Species,Sepal.Length,Sepal.Width)
+glimpse(iris2)</code></pre>
+<pre><code>## Rows: 28
+## Columns: 3
+## $ Species      &lt;fct&gt; versicolor, versicolor, versicolor, versicolor, versicolo…
+## $ Sepal.Length &lt;dbl&gt; 6.4, 6.1, 6.7, 6.1, 6.1, 6.6, 6.7, 6.1, 6.2, 6.3, 7.1, 6.…
+## $ Sepal.Width  &lt;dbl&gt; 3.2, 2.9, 3.1, 2.8, 2.8, 3.0, 3.0, 3.0, 2.9, 3.3, 3.0, 3.…</code></pre>
+<pre class="r"><code># There are 28 observations and 3 variables.
+
+#### 4. Create an iris3 data frame from iris2 that orders the observations from largest to smallest sepal length. Show the first 6 rows of this data set.
+
+iris3 &lt;- arrange(iris2, by=desc(Sepal.Length))
+head(iris3)</code></pre>
+<pre><code>##     Species Sepal.Length Sepal.Width
+## 1 virginica          7.7         2.6
+## 2 virginica          7.7         2.8
+## 3 virginica          7.4         2.8
+## 4 virginica          7.1         3.0
+## 5 virginica          6.9         3.2
+## 6 virginica          6.8         3.0</code></pre>
+<pre class="r"><code>#### 5. Create an iris4 data frame from iris3 that creates a column with a sepal area (length * width) value for each observation. How many observations and variables are in the data set?
+
+iris4 &lt;- mutate(iris3, Sepal.Area=Sepal.Length*Sepal.Width)
+glimpse(iris4)</code></pre>
+<pre><code>## Rows: 28
+## Columns: 4
+## $ Species      &lt;fct&gt; virginica, virginica, virginica, virginica, virginica, vi…
+## $ Sepal.Length &lt;dbl&gt; 7.7, 7.7, 7.4, 7.1, 6.9, 6.8, 6.7, 6.7, 6.7, 6.7, 6.7, 6.…
+## $ Sepal.Width  &lt;dbl&gt; 2.6, 2.8, 2.8, 3.0, 3.2, 3.0, 3.1, 3.0, 3.3, 3.1, 3.3, 3.…
+## $ Sepal.Area   &lt;dbl&gt; 20.02, 21.56, 20.72, 21.30, 22.08, 20.40, 20.77, 20.10, 2…</code></pre>
+<pre class="r"><code>#There are 28 observations and 4 variables in the data set. 
+
+#### 6. Create the variable irisTab that shows the average sepal length, the average sepal width, and the sample size of the entire iris4 data frame and print irisTab.
+
+irisTab &lt;- summarize(iris4, AverageSepalLength = mean(Sepal.Length), AverageSepalWidth = mean(Sepal.Width), SampleSize= n())
+glimpse(irisTab)</code></pre>
+<pre><code>## Rows: 1
+## Columns: 3
+## $ AverageSepalLength &lt;dbl&gt; 6.575
+## $ AverageSepalWidth  &lt;dbl&gt; 3.003571
+## $ SampleSize         &lt;int&gt; 28</code></pre>
+<pre class="r"><code>print(irisTab)</code></pre>
+<pre><code>##   AverageSepalLength AverageSepalWidth SampleSize
+## 1              6.575          3.003571         28</code></pre>
+<pre class="r"><code>#### 7. Finally, create iris5 that calculates the average sepal length, the average sepal width, and the sample size for each species of in the iris4 data frame and print iris5.
+
+iris5 &lt;- iris4 %&gt;% 
+  group_by(Species) %&gt;% 
+  summarize(AverageSepalLength = mean(Sepal.Length),AverageSepalWidth = mean(Sepal.Width), SampleSize= n())
+print(iris5)</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   Species    AverageSepalLength AverageSepalWidth SampleSize
+##   &lt;fct&gt;                   &lt;dbl&gt;             &lt;dbl&gt;      &lt;int&gt;
+## 1 versicolor               6.33              2.97          9
+## 2 virginica                6.69              3.02         19</code></pre>
+<pre class="r"><code>#### 8. Rework all of your previous statements (except for irisTab) into an extended piping operation that uses iris as the input and generates irisFinal as the output.
+
+irisFinal &lt;- iris %&gt;% 
+  filter(Species== c(&quot;virginica&quot;, &quot;versicolor&quot;) &amp; Sepal.Length &gt; 6 &amp; Sepal.Width &gt; 2.5) %&gt;% 
+  select(Species,Sepal.Length,Sepal.Width) %&gt;%
+  arrange(by=desc(Sepal.Length)) %&gt;%
+  mutate(Sepal.Area=Sepal.Length*Sepal.Width) %&gt;%
+  group_by(Species) %&gt;% 
+  summarize(AverageSepalLength = mean(Sepal.Length),AverageSepalWidth = mean(Sepal.Width), SampleSize= n()) 
+print(irisFinal)  </code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   Species    AverageSepalLength AverageSepalWidth SampleSize
+##   &lt;fct&gt;                   &lt;dbl&gt;             &lt;dbl&gt;      &lt;int&gt;
+## 1 versicolor               6.33              2.97          9
+## 2 virginica                6.69              3.02         19</code></pre>
 
 
 
