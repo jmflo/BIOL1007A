@@ -9,6 +9,7 @@ date: "2023-01-17"
 set.seed(111)
 n_dims<-round(runif(n=1, min=3,max=10))
 
+#or n_dims<-sample(3:10,1)
 ```
 
 
@@ -16,6 +17,8 @@ n_dims<-round(runif(n=1, min=3,max=10))
 # Create a vector of consecutive integers from 1 to n_dims2.
 varA <- 1:n_dims^2
 varA
+
+# or varA <- seq(1:n_dims^2)
 ```
 
 
@@ -23,6 +26,7 @@ varA
 #Use the sample function to randomly reshuffle these values.
 sample(varA)
 
+# set to a new variable
 ```
 
 
@@ -30,6 +34,8 @@ sample(varA)
 #Create a square matrix with these elements AND print out the matrix.
 m<-matrix(data=varA, nrow=n_dims)
 print(m)
+
+# m<- matrix(data=randomVar, nrow=n_dims, ncol=n_dims)
 ```
 
 
@@ -52,16 +58,22 @@ print(t(m)) #the columns and rows have flipped
 ```{r}
 #Calculate the sum and the mean of the elements in the first row and then the last row.
 
+# can separate lines of code with a semicolon
 sum(m[,1])
+
 ```
 ```{r}
 mean(m[,1])
 ```
 ```{r}
 sum(m[,5])
+
+# or sum(m([n_dims,])) // use n_dims so it is reproducible 
 ```
 ```{r}
 mean(m[,5])
+
+# or mean(m([n_dims,])) // use n_dims so it is reproducible 
 ```
 
 

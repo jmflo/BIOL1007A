@@ -363,10 +363,10 @@ randomNumbers&lt;-round(runif(n=16, min=2,max=20))
 my_matrix&lt;-matrix(data=randomNumbers, nrow=4)
 print(my_matrix)</code></pre>
 <pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]   17    5   12    6
-## [2,]    6   18    8    6
-## [3,]   10   15   11   10
-## [4,]   17    7   16   11</code></pre>
+## [1,]   19   11   18    6
+## [2,]    9    6    8    6
+## [3,]    3    8   14   16
+## [4,]    2    8    5   14</code></pre>
 <pre class="r"><code>#my_logical which is a 100-element vector of TRUE or FALSE values. You can do this efficiently by setting up a vector of random values and then applying an inequality to it.
 set.seed(123)
 my_logical&lt;-runif(n=100)
@@ -401,6 +401,7 @@ my_logical</code></pre>
 ##  [73] FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
 ##  [85]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE
 ##  [97] FALSE  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code># mylogcial&lt;- as.logical(sample(0:1,100, replace=T))</code></pre>
 <pre class="r"><code># my_letters, which is a 26-element vector of all the lower-case letters in random order.
 
 my_letters&lt;-c(letters[1:26])
@@ -417,10 +418,10 @@ mylist&lt;- list(my_matrix, my_logical&lt;0.5, my_letters)
 mylist</code></pre>
 <pre><code>## [[1]]
 ##      [,1] [,2] [,3] [,4]
-## [1,]   17    5   12    6
-## [2,]    6   18    8    6
-## [3,]   10   15   11   10
-## [4,]   17    7   16   11
+## [1,]   19   11   18    6
+## [2,]    9    6    8    6
+## [3,]    3    8   14   16
+## [4,]    2    8    5   14
 ## 
 ## [[2]]
 ##   [1]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
@@ -440,7 +441,7 @@ mylist</code></pre>
 
 m&lt;-mylist[[1]][2,2]
 m</code></pre>
-<pre><code>## [1] 18</code></pre>
+<pre><code>## [1] 6</code></pre>
 <pre class="r"><code>lv&lt;-mylist[[2]][2]
 lv</code></pre>
 <pre><code>## [1] FALSE</code></pre>
@@ -450,22 +451,24 @@ av</code></pre>
 <pre class="r"><code>newlist&lt;- list(m, lv, av)
 newlist</code></pre>
 <pre><code>## [[1]]
-## [1] 18
+## [1] 6
 ## 
 ## [[2]]
 ## [1] FALSE
 ## 
 ## [[3]]
 ## [1] &quot;t&quot;</code></pre>
+<pre class="r"><code># or mylist&lt;- list(my_matric[2,2], mylogical[2], myletters[2])</code></pre>
 <pre class="r"><code>#use the typeof() function to confirm the underlying data types of each component in this list
 
 typeof(newlist)</code></pre>
 <pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code># typeof</code></pre>
 <pre class="r"><code>#combine the underlying elements from the new list into a single atomic vector with the c() function.
 
 newlist2&lt;-c(m, lv, av)
 newlist2</code></pre>
-<pre><code>## [1] &quot;18&quot;    &quot;FALSE&quot; &quot;t&quot;</code></pre>
+<pre><code>## [1] &quot;6&quot;     &quot;FALSE&quot; &quot;t&quot;</code></pre>
 <pre class="r"><code>#what is the data type of this vector?
 
 typeof(newlist2)</code></pre>
@@ -537,6 +540,7 @@ sample(1:nrow(df),4) </code></pre>
 ## 24 8.746823          T
 ## 25 5.817501          N
 ## 26 8.397678          K</code></pre>
+<pre class="r"><code>#df$my_unifs[sample(1:nrow(df),4),1] &lt;- NA // need to ad ,1</code></pre>
 <pre class="r"><code>#for the first variable, write a single line of R code to identify which rows have the missing values.
 
 which(!complete.cases(df))</code></pre>
@@ -576,6 +580,7 @@ df</code></pre>
 
 mean(df[,1], na.rm = TRUE)</code></pre>
 <pre><code>## [1] 4.89922</code></pre>
+<pre class="r"><code># or mean(df$my_unis, na.rm = TRUE)</code></pre>
 <pre class="r"><code>#rename the second column ‘my_LETTERS’
 
 colnames(df)[2] &lt;- &#39;my_LETTERS&#39;

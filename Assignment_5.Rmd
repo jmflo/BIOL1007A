@@ -19,6 +19,8 @@ set.seed(123)
 my_logical<-runif(n=100)
 my_logical
 my_logical<0.5
+
+# mylogcial<- as.logical(sample(0:1,100, replace=T))
 ```
 
 
@@ -61,12 +63,16 @@ av
 newlist<- list(m, lv, av)
 newlist
 
+# or mylist<- list(my_matric[2,2], mylogical[2], myletters[2])
+
 ```
 
 ```{r}
 #use the typeof() function to confirm the underlying data types of each component in this list
 
 typeof(newlist)
+
+# typeof
 ```
 
 
@@ -82,6 +88,7 @@ newlist2
 #what is the data type of this vector?
 
 typeof(newlist2)
+
 
 ```
 
@@ -105,6 +112,7 @@ sample(1:nrow(df),4)
 
 df
 
+#df$my_unifs[sample(1:nrow(df),4),1] <- NA // need to ad ,1
 ```
 
 
@@ -130,6 +138,7 @@ df
 
 mean(df[,1], na.rm = TRUE)
 
+# or mean(df$my_unis, na.rm = TRUE)
 ```
 
 ```{r}

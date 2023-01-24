@@ -236,5 +236,7 @@ m[complete.cases(m),] # gives rows that do not have NAs // , : all rows
 ## get complete cases for only certain rows
 m[complete.cases(m[,c(1:2)]),] # need all the commas
 
+
+
                  
   

@@ -10,9 +10,9 @@
 
 
 
-<meta name="date" content="2023-01-17" />
+<meta name="date" content="2023-01-21" />
 
-<title>Assignment_4</title>
+<title>Weekly_Assignment_2</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -349,75 +349,13 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Assignment_4</h1>
-<h4 class="date">2023-01-17</h4>
+<h1 class="title toc-ignore">Weekly_Assignment_2</h1>
+<h4 class="date">2023-01-21</h4>
 
 </div>
 
 
-<pre class="r"><code>set.seed(111)
-n_dims&lt;-round(runif(n=1, min=3,max=10))
-
-#or n_dims&lt;-sample(3:10,1)</code></pre>
-<pre class="r"><code># Create a vector of consecutive integers from 1 to n_dims2.
-varA &lt;- 1:n_dims^2
-varA</code></pre>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
-## [26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49</code></pre>
-<pre class="r"><code># or varA &lt;- seq(1:n_dims^2)</code></pre>
-<pre class="r"><code>#Use the sample function to randomly reshuffle these values.
-sample(varA)</code></pre>
-<pre><code>##  [1] 20 19 47 25  5 35  8 26 10 36 43 14 42 46 24  7 21 15  1  9 39 40  3 34 49
-## [26]  4  6 28 44 23 45 48 22 33 30 12 41  2 13 29 37 11 18 32 31 16 38 27 17</code></pre>
-<pre class="r"><code># set to a new variable</code></pre>
-<pre class="r"><code>#Create a square matrix with these elements AND print out the matrix.
-m&lt;-matrix(data=varA, nrow=n_dims)
-print(m)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-## [1,]    1    8   15   22   29   36   43
-## [2,]    2    9   16   23   30   37   44
-## [3,]    3   10   17   24   31   38   45
-## [4,]    4   11   18   25   32   39   46
-## [5,]    5   12   19   26   33   40   47
-## [6,]    6   13   20   27   34   41   48
-## [7,]    7   14   21   28   35   42   49</code></pre>
-<pre class="r"><code># m&lt;- matrix(data=randomVar, nrow=n_dims, ncol=n_dims)</code></pre>
-<pre class="r"><code>#Find a function in r to transpose the matrix.
-
-t(m)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-## [1,]    1    2    3    4    5    6    7
-## [2,]    8    9   10   11   12   13   14
-## [3,]   15   16   17   18   19   20   21
-## [4,]   22   23   24   25   26   27   28
-## [5,]   29   30   31   32   33   34   35
-## [6,]   36   37   38   39   40   41   42
-## [7,]   43   44   45   46   47   48   49</code></pre>
-<pre class="r"><code>#Print it out again and note how it has changed.
-
-print(t(m)) #the columns and rows have flipped</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-## [1,]    1    2    3    4    5    6    7
-## [2,]    8    9   10   11   12   13   14
-## [3,]   15   16   17   18   19   20   21
-## [4,]   22   23   24   25   26   27   28
-## [5,]   29   30   31   32   33   34   35
-## [6,]   36   37   38   39   40   41   42
-## [7,]   43   44   45   46   47   48   49</code></pre>
-<pre class="r"><code>#Calculate the sum and the mean of the elements in the first row and then the last row.
-
-# can separate lines of code with a semicolon
-sum(m[,1])</code></pre>
-<pre><code>## [1] 28</code></pre>
-<pre class="r"><code>mean(m[,1])</code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>sum(m[,5])</code></pre>
-<pre><code>## [1] 224</code></pre>
-<pre class="r"><code># or sum(m([n_dims,])) // use n_dims so it is reproducible </code></pre>
-<pre class="r"><code>mean(m[,5])</code></pre>
-<pre><code>## [1] 32</code></pre>
-<pre class="r"><code># or mean(m([n_dims,])) // use n_dims so it is reproducible </code></pre>
-<pre class="r"><code>#Set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value</code></pre>
+<pre class="r"><code>#Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations. </code></pre>
 
 
 
