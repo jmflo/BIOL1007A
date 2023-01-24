@@ -5,11 +5,50 @@ date: "2023-01-21"
 ---
 
 ```{r}
+### 1. Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
+
+newfunc <- function(means= c(10, 45)){
+  df <- data.frame (Type= c(rep("control",25), rep("treatment", 25)), Value = c(rnorm(25, 10, 1.5), rnorm(25, 45, 2))) 
+  return(df)
+  
+}
+
+newfunc()
+
+```
 
 
+```{r}
+### 2.
+
+newVar <-newfunc()
+head(newVar)
+
+```
 
 
+```{r}
+### 3. 
+
+anova <- aov(Value ~ Type, data= newVar)
+summary(anova)
 
 
 ```
+
+```{r}
+### 4. 
+
+anova1 <- function(data= newfunc){
+  
+ anova <- aov(Value ~ Type, data = newVar)
+ p <- summary(anova)[[1]][["Pr(>F)"]][1]
+  
+  return(p)
+}
+anova1()
+```
+
+
+
 
