@@ -48,7 +48,7 @@ b<- ggplot(starwarsClean, aes(x = species, y = height, fill=species)) +
 scale_fill_manual(values =cols)+
   labs(x="Species",
        y="Heights (cm)")
-b
+b + annotate("text", x=8.5, y=220, label="p = 1.2E-0.5")
 ```
 
 
@@ -59,6 +59,11 @@ b2 <- qplot(x=starwarsClean$species,fill=I("darkblue"),color=I("black")) +
   labs(x="Species",
        y="Heights (cm)")
 b2
+
+ggplot(starwarsClean, aes(x=species)) +
+  geom_col(aes(y=height), fill="darkblue") +
+  labs(x="Species",
+       y="Heights (cm)")
 ```
 
 ```{r}

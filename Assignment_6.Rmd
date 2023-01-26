@@ -17,6 +17,7 @@ glimpse(iris)
 #### 2. Create a new data frame iris1 that contains only the species virginica and versicolor with sepal lengths longer than 6 cm and sepal widths longer than 2.5 cm. How many observations and variables are in the data set?
 
 iris1 <- filter(iris, Species== c("virginica", "versicolor") & Sepal.Length > 6 & Sepal.Width > 2.5)
+glimpse(iris1)
 
 #### 3. Now, create a iris2 data frame from iris1 that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the data set?
 

@@ -1,0 +1,113 @@
+---
+title: "2023-01-26-Loading-Data"
+output: html_document
+date: "2023-01-26"
+---
+```{r}
+### Write a table function // write.table()
+
+#save as as csv //
+
+### Create and save a dataset:
+## write.table(x=varName, file="outputFileName.csv", header=TRUE, sep=",")
+
+#These functions read in a data set
+#read.table(file="path/to/data.csv", header=TRUE,sep= ",")
+
+#read.csv(file="data.csv", header=T)
+
+### Yse RDS object when only working in R
+## helps with sending large datasets in R
+## saveRDS(MY_DATA, file="FileName.RDS) #puts data as a variable
+## p <- readRDS("FileName.RDS) 
+
+
+## Long vs Wide Data Formats
+
+# wide format = contains values that do not repeat in the ID column. 
+# long format = contains values that do repeat in the ID column.
+#sometimes data is collected and entered one way, but needed in a different format for analysis and plotting
+
+library(tidyverse)
+glimpse(billboard) # wide format
+
+B1 <- billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"), #specify which columns you want to make 'longer'
+    names_to = "Week", #name of new column of header names
+    values_to = "Rank", #name of new column of cell values
+    values_drop_na = TRUE #will not include any rows (weeks) were the values have NAs
+  )
+```
+
+```{r}
+### pivot_wider
+### best for making occupancy matrix
+
+#fish are going to be rows and sites are going to be columns 
+
+head(fish_encounters) 
+table(fish_encounters$seen) 
+  
+fish_encounters %>%
+  pivot_wider(names_from = station, #which column would you like to turn into multiple columns
+              values_from = seen) #which column contains the values for the new columns
+
+
+fish_encounters %>%
+  pivot_wider(names_from = station, 
+              values_from = seen, 
+              values_fill = 0) # Fill in missing values (NAs) with 0s
+```
+
+```{r}
+#### Dryad: makes research data discoverable, freely reusable, and citable. // avaible to everyone 
+
+##read.table()
+dryadData <- read.table(file="Data/amphibian_data.csv", header=TRUE, sep= ",")
+glimpse(dryadData)
+head(glimpse)
+
+table(dryadData$species) ### allows you to see different groups of character columns
+summary(dryadData$mean.hydro)
+
+
+```
+```{r}
+### How to do Weekly Assignment 3
+library(ggthemes)
+str(dryadData$species)
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot // factor is a different type of data // factors helps R recognize that species are different species 
+
+str(dryadData$species) #now it is a facotr with 2 levels
+
+class(dryadData$treatment)
+
+dryadData$treatment <- factor(dryadData$treatment, #now need to factor treatment and give it levels
+            levels=c("Reference",
+                     "100m", "30m")) # this says what goes first 
+
+
+p<- ggplot(data=dryadData, 
+       aes(x=interaction(wetland, treatment), #group treatment and wetland
+      y=count.total.adults, fill=factor(year))) + #fills bars with corresponding data year
+  geom_bar(position="dodge", stat="identity", color="black") + #color is outline of the bars // position organizes the ways the bars are shown (dodge is right next to each other) // stat further organizes the bar (identity makes them individual bars)
+  
+  ylab("Number of breeding adults") + #y axis title for both graphs
+  xlab("") + #empty under bottom plot
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) +## y axis should be broken up by 100s
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) + #x axis titles for bottom plot
+  facet_wrap(~species, nrow=2, strip.position="right") + #puts titles on the right of each graph
+  theme_few() + scale_fill_grey() + 
+  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), legend.position="top", #puts legend(years) on top
+        legend.title=  element_blank(), 
+        axis.title.y = element_text(size=12, 
+        face="bold", colour = "black"), 
+        strip.text.y = element_text(size = 10, face="bold", colour = "black")) + 
+  guides(fill=guide_legend(nrow=1,byrow=TRUE)) 
+
+p
+
+
+```
+
