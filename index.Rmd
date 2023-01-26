@@ -14,10 +14,11 @@ date: "2023-01-10"
 [Assignment 3](Assignment_3.html)  
 [Assignment 4](Assignment_4.html)  
 [Assignment 5](Assignment_5.html)  
-[Assignment 6](Assignment_6.1.html)
+[Assignment 6](Assignment_6.html)   
+[Assignment 7](Assignment_7.html)
 
 ## Weekly Assignments    
-[Assignment 1](Weekly_Assignment_1.html)      
+[Assignment 1](Weekly_Assignment_1.html)       
 [Assignment 2](Weekly_Assignment_2.html)
 
 ## Notes

@@ -1,0 +1,68 @@
+---
+title: "Assignment_7"
+output: html_document
+date: "2023-01-24"
+---
+
+```{r}
+library(dplyr)
+
+sw2<- starwars %>% 
+  count(species) %>%
+  filter(n>1)
+sw2
+
+sw3<- filter(starwars, starwars$species %in% sw2$species)
+sw3
+```
+
+```{r}
+# It only includes the columns that are not of type list
+glimpse(sw3)
+# 6r,14c
+sw4<- sw3[, sapply(sw3, class) != "list"]
+glimpse(sw4)
+#View(sw4)
+```
+
+```{r}
+anyNA(sw4) 
+starwarsClean <- sw4[!is.na(sw4$height),]
+starwarsClean
+
+```
+```{r}
+starwarsClean %>%
+  group_by(species) %>%
+  summarize(meanHeight = mean(height), medianHeight= median(height), SDHeight= sd(height))
+```
+
+
+
+```{r}
+library(viridis)
+library(ggplot2)
+cols <- viridis(9, option="magma")
+b<- ggplot(starwarsClean, aes(x = species, y = height, fill=species)) +
+   geom_boxplot() +
+scale_fill_manual(values =cols)+
+  labs(x="Species",
+       y="Heights (cm)")
+b
+```
+
+
+
+
+```{r}
+b2 <- qplot(x=starwarsClean$species,fill=I("darkblue"),color=I("black")) +
+  labs(x="Species",
+       y="Heights (cm)")
+b2
+```
+
+```{r}
+library(patchwork)
+b / b2
+```
+

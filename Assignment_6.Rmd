@@ -1,7 +1,7 @@
 ---
-title: "Assignment 6"
+title: "Assignment_6"
 output: html_document
-date: "2023-01-24"
+date: "2023-01-26"
 ---
 
 ```{r}
@@ -57,8 +57,9 @@ irisFinal <- iris %>%
   select(Species,Sepal.Length,Sepal.Width) %>%
   arrange(by=desc(Sepal.Length)) %>%
   mutate(Sepal.Area=Sepal.Length*Sepal.Width) %>%
-  
+  group_by(Species) %>% 
   summarize(AverageSepalLength = mean(Sepal.Length),AverageSepalWidth = mean(Sepal.Width), SampleSize= n()) 
 print(irisFinal)  
+
 ```
 
