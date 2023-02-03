@@ -1,0 +1,110 @@
+---
+title: "Assignment 8.1"
+output: html_document
+date: "2023-02-03"
+---
+
+```{r}
+#### Code Reflection
+
+###Assignment 6
+
+# 2. Create a new data frame iris1 that contfains only the species virginica and versicolor with sepal lengths longer than 6 cm and sepal widths longer than 2.5 cm. How many observations and variables are in the data set?
+
+#(Original) iris1 <- filter(iris, Species== c("virginica", #"versicolor") & Sepal.Length > 6 & Sepal.Width > 2.5)
+#glimpse(iris1)
+#got rows:28, cols: 5
+
+
+# need to use %in% to find with values within Species fits the criteria
+
+#iris1 <- filter(iris, Species %in% c("virginica", "versicolor"), Sepal.Length > 6, Sepal.Width > 2.5)
+#glimpse(iris1)
+
+```
+
+```{r}
+# 3. Now, create an iris2 data frame from iris1 that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the dataset?
+
+#Orginal set up with new iris1
+
+#iris2 <- select(iris1, Species,Sepal.Length,Sepal.Width)
+#glimpse(iris2)
+
+
+## The rest of the code I had set up after #2 worked after i changed it
+```
+
+```{r}
+### Assignment 8
+
+# 1. 
+
+# (original) newfunc <- function(means= c(10, 45)){
+#  df <- data.frame (Type= c(rep("control",25), rep("treatment", 25)), Value = c(rnorm(25, 10, 1.5), rnorm(25, 45, 2))) 
+
+#this way would not allow you to rerun it with different variables
+#could still use c, but labeling each one makes it more clear
+
+newfunc <- function(mean1 = 17, sd1 = 1, mean2 = 34, sd2 = 1.9, n=30){ #when you make your own functions, you can name them yourself // make sure to call that name
+  Type <- rep(c("Control", "Treatment"), each = n)
+  Value <- c(rnorm(n, mean = mean1, sd = sd1), rnorm(n, mean = mean2, sd = sd2)) # labeling it thins way lets you just change the variables in the function without needing to edit the rest
+  dframe <- data.frame(Type, Value)
+  return(dframe)
+}
+
+data <- newfunc()
+head(data)
+
+# The rest of my code matches what is in the posted solutions and it works with different variables
+```
+
+```{r}
+### How to do Weekly Assignment 3
+library(ggthemes)
+library(tidyverse)
+library(dplyr)
+
+###############################
+
+#I know the graph isn't correct, but when I try to knit I am given an error saying "y" is needed for geom_bar(). I left it blank for it to knit, but I originally copied it from your notes as geom_bar(position="dodge", stat="identity")
+
+
+dryadData <- read.table(file="Data/amphibian_data.csv", header=TRUE, sep= ",")
+                        
+str(dryadData$species)
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot // factor is a different type of data // factors helps R recognize that species are different species 
+
+str(dryadData$species) #now it is a facotr with 2 levels
+
+class(dryadData$treatment)
+
+dryadData$treatment <- factor(dryadData$treatment, #now need to factor treatment and give it levels
+            levels=c("Reference",
+                     "100m", "30m")) # this says what goes first 
+
+
+p<- ggplot(data=dryadData, 
+       aes(x=interaction(wetland, treatment)), #group treatment and wetland
+      y=count.total.adults, fill=factor(year)) + #fills bars with corresponding data year
+  geom_bar() + #color is outline of the bars // position organizes the ways the bars are shown (dodge is right next to each other) // stat further organizes the bar (identity makes them individual bars)
+  
+  ylab("Number of breeding adults") + #y axis title for both graphs
+  xlab("") + #empty under bottom plot
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) +## y axis should be broken up by 100s
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) + #x axis titles for bottom plot
+  facet_wrap(~species, nrow=2, strip.position="right") + #puts titles on the right of each graph
+  theme_few() + scale_fill_grey() + #color themes
+  theme(panel.background = element_rect(fill = 'white'#background colors
+                                          , color = 'black'), #outline of graphs
+        legend.position="top", #puts legend(years) on top
+        legend.title=  element_blank(), #set an empty string is that there is no extra white space above the legend where the legend title used to be.
+        axis.title.y = element_text(size=12, 
+        face="bold", colour = "black"), #adjusts text size and font
+        strip.text.y = element_text(size = 10, face="bold", colour = "black")) + #flips labels into a vertical position
+  guides(fill=guide_legend(nrow=5,byrow=TRUE)) #sorta squishes the graph together
+
+p
+
+```
+

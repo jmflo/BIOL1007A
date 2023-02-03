@@ -1,6 +1,7 @@
 ---
 title: "F21 Natural Selection Data"
-output:  prettydoc::html_pretty:
+output:  
+  prettydoc::html_pretty:
     theme: caymen
     highlight: github
 date: "2023-01-31"
