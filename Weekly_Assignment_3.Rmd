@@ -3,27 +3,38 @@ title: "Weekly Assignment 3"
 output: html_document
 date: "2023-01-26"
 ---
+[Figure A3](https://www.journals.uchicago.edu/doi/10.1086/704102)
+```{r}
+# 1. Go to Dryad to choose a published paper and data set and reconstruct your own figure. Code a ggplot graph that looks as close to the published figure as you can.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+lobster <-read.table(file="Data/doi_10-4/IsolationByDistance.csv", header=TRUE, sep=",", stringsAsFactors = TRUE)
+glimpse(lobster)
+
+```
+```{r}
+library(ggthemes)
+p<- ggplot(data = lobster, aes(x = dist, +   
+  geom_point(aes(y = sample1), color = "red", size=1) +
+  geom_point(aes(y = sample2), color= "blue", size=1)) +
+    geom_point(color="black", size =1) +
+  ylab("Fst") + 
+  xlab("geographic distance (km)") + 
+    geom_smooth(method = "lm", se=FALSE, color="black", linetype = "dashed")
+  
+
+p
+    
 ```
 
-## R Markdown
+```{r}
+b <- ggplot(data = lobster, aes(x = dist, y= cols(c(sample1, sample2)))) +
+  geom_point() +
+  ylab("Fst") + 
+  xlab("geographic distance (km)") +
+geom_smooth(method = "lm", se=FALSE, color="black", linetype = "dashed") +
+  theme_classic()
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+b
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

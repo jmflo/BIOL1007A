@@ -1,0 +1,68 @@
+---
+title: "Assignment 9"
+output: html_document
+date: "2023-01-30"
+---
+
+```{r}
+# 1.
+set.seed(111)
+m <- round(runif(14))
+m
+
+counter<- 0
+```
+
+```{r}
+ for (i in 1:length(m)) {
+  if (m[i]==0){counter<- counter+1
+  } else
+    print(counter)
+}
+
+
+
+```
+
+```{r}
+func <- function (nrows=2, ncols=3){
+matrix <- matrix(nrow= nrows, ncol= ncols)
+for (i in 1:nrows){
+  for(j in 1:ncols){
+   matrix[i,j]<- i*j
+  }
+}
+return(matrix)
+}
+matrix<-func(nrows=4, ncols=3)
+matrix
+```
+
+```{r}
+newfunc <- function(means= c(10, 45)){
+  df <- data.frame (Type= c(rep("control",25), rep("treatment", 25)), Value = c(rnorm(25, 10, 1.5), rnorm(25, 45, 2))) 
+  return(df)
+  
+}
+
+newVar <-newfunc()
+
+anova1 <- function(data= newfunc){
+  
+ anova <- aov(Value ~ Type, data = newVar)
+ p <- summary(anova)[[1]][["Pr(>F)"]][1]
+  
+  return(p)
+}
+anova1()
+
+loop <- data.frame()
+for(i in 1:100){
+  loop[i,"r_num"] <- i
+  loop[i,"pval"] <- anova1()
+}
+
+loop
+
+```
+

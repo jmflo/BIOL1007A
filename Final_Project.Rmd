@@ -1,0 +1,174 @@
+---
+title: "F21 Natural Selection Data"
+output:  prettydoc::html_pretty:
+    theme: caymen
+    highlight: github
+date: "2023-01-31"
+editor_options: 
+  chunk_output_type: inline
+---
+## How to recreate some graphs!
+
+For my final project, I decided to recreate some graphs from my BIOL140. They definitely posed a challenge, but I was able to recreate them with some assistance. Thank you Professor Ash!
+
+### Step 1
+
+The original data was not conducive to plotting data in R, so it has to be manipulated.
+In an excel file, copy and paste the data points into multiple columns and rename the headers. 
+*I decided to rename the the first graph's control data to C1:C4 and the treatment group T1:T2. 
+*For the second graph, I named the control group time 1.C:time 6.C and the treatment group time 1.T:time 6.T. 
+
+### Step 2 
+
+Download the data and place it into your BIOL1007 folder labeled "Data". (It could be saved elsewhere if you would like)
+
+### Step 3
+
+Load the data into R using "read.table" and getting graphing! The steps I used are used below.
+
+```{r}
+### Graph 1
+
+#download the necessary packages
+library(tidyverse)
+library(dplyr)
+library(ggthemes)
+library(tidyr)
+
+NSData <- read.table(file="Data/New_F21_Natural_Selection.csv", header=TRUE, sep= ",") #downloaded data and put into my data folder in BIOL1007
+#View(NSData)
+glimpse(NSData)
+
+NSData$T4 <- as.numeric(NSData$T4) #This line was showing up as a character, so set it to numeric
+glimpse(NSData)
+
+
+NSData1 = na.omit(NSData) #removed NAs
+glimpse(NSData1)
+#View(NSData1)
+
+NSD <- NSData1 %>% #reorganized data layout
+  pivot_longer(
+    cols = 1:8, 
+    names_to = "Group", 
+    values_to = "Zone_of_Inhibiton", 
+    values_drop_na = TRUE)
+#View(NSD)
+
+library(plotrix) #helpful when plotting because it has various labeling, axis, and color scaling functions
+
+C<- NSD %>%
+  group_by(Group)%>%
+  summarize(average_zoi=mean(Zone_of_Inhibiton),se_zoi= std.error(Zone_of_Inhibiton)) %>%
+  mutate(treatment= rep(c("Control", "Treatment"), each= 4), Round= rep(1:4, 2)) #used piping to end up if data organized by round and treatment group
+
+#View(C)
+df<- data.frame(C) #maade a new data frame
+df
+
+#plotting data in scatterplot
+ sp<- ggplot(data=df, aes(x= Round, y=average_zoi, color=treatment)) + #color=treatment plots data from the treatment column we just made
+  geom_point() +
+  geom_line(size=1) +
+   geom_errorbar(aes(ymin=average_zoi-se_zoi, ymax=average_zoi+se_zoi), width=0.1) + #graohs the error bars
+  ylab("Zone of Inhibiton (mm)") + 
+  xlab("Rounds") +
+  theme(legend.position = "bottom") +
+  theme(legend.key.size = unit(0.2, 'cm')) +
+  theme(legend.title=element_blank()) +
+  theme(axis.line = element_line(color='grey'), #manual way to get the x/y axis lines I wanted
+    plot.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_rect(fill = 'white', color = 'white')) +
+   scale_y_continuous(breaks= c(0, 1, 2, 3, 4, 5, 6, 7, 8), limits=c(0, 8)) + #manual way to get the axis tics of your choosing
+  theme(axis.title.y = element_text(size=8,
+      colour = "black")) +
+  theme(axis.title.x = element_text(size=8,
+      colour = "black"))
+  sp1<- sp
+  sp1 + scale_color_manual(values=c("#CC6600","#0666CC")) #changes the colors
+
+
+```
+
+```{r}
+### Graph 2
+
+A600Data <- read.table(file="Data/A600_data_Updated3.csv", header=TRUE, sep= ",") #downloaded data and put into my data folder in BIOL1007
+#View(A600Data)
+
+A600Data$time.4.T <- as.numeric(A600Data$time.4.T) #This line was showing up as a character, so set it to numeric
+glimpse(A600Data)
+
+A600Data %>%
+   mutate_all(as.character) #getting error saying time.1.C <double> and time.4.T is <character> // doesn't work lol
+is.numeric(A600Data$time.2.T) # same as above
+
+A600 <- A600Data %>%
+  pivot_longer(
+    cols = starts_with("time"), #specify which columns you want to make 'longer'
+    names_to = "Time", #name of new column of header names
+    values_to = "A600", #name of new column of cell values
+    values_drop_na = TRUE
+  )
+##changed the way the data was set up
+#View(A600)
+
+A600$Trt <- ifelse(grepl("C", A600$Time), "Control", "Treatment")
+#used the ifelse with grepl to organize the data // grepl identifies specific substrings(or characteristics) and finds all data with the same pattern
+
+
+#case_when using grep ~
+A6<- A600 %>%
+  mutate(Group = case_when(grepl("1", Time) ~ '1',
+                          grepl("2", Time)  ~ '2',
+                          grepl("3", Time)  ~ '3',
+                          grepl("4", Time)  ~ '4',
+                          grepl("5", Time)  ~ '5',
+                          grepl("6", Time)  ~ '6'))
+  ##case_when tests for a specific condition and then gives a value if the condition is TRUE (kinda like if)
+##used in conjunction with grepl to organize the data by time increments 
+
+d<- A6 %>%
+  group_by(Time, Trt)%>%
+  summarize(average_absorb=mean(A600),se_absorb= std.error(A600))
+  d$minutes <- factor(rep(c("0", "30", "60", "90", "120", "150"), each= 2), levels= c("0", "30", "60", "90", "120", "150")) #needed to add new minutes column
+#piped data to find mean and SE 
+
+#View(d)
+
+#plotting data in bar grpah 
+
+bp<- ggplot(data=d, aes(x=factor(minutes), y= average_absorb, fill= Trt)) + #fill is used to put the data you want into the graph
+   geom_col(position="dodge") + #organizes data 
+  geom_errorbar(aes(ymin=average_absorb-se_absorb, ymax=average_absorb+se_absorb), width= 0.1, position = position_dodge(width=0.85)) + #added error bars
+  ylab("A600 (Absorbance at 600nm)") + 
+  xlab("Time (minutes)") +
+  scale_x_discrete(labels=c("0", "30", "60", "90","120","150")) + #removed time.1.C... from the bottom
+  scale_y_continuous(breaks= c(0, .1,.2,.3,.4,.5,.6), limits=c(0, .6)) + #manual axis tic increments 
+  scale_fill_manual(values=c("#0666CC","#CC6600")) + #chaging the colors
+  theme(legend.position = "bottom") +
+  theme(legend.key.size = unit(0.2, 'cm')) + #changed legend size
+  theme(legend.title=element_blank()) + #removed legend title
+  theme(axis.line = element_line(color='grey'), #manual way to get the x/y axis lines I wanted
+    plot.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_rect(fill = 'white', color = 'white')) +
+  theme(axis.title.y = element_text(size=8,
+      colour = "black")) +
+  theme(axis.title.x = element_text(size=8,
+      colour = "black"))
+
+  bp
+  
+  
+
+ 
+
+```
+
+### Great Job!

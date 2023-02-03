@@ -7,6 +7,8 @@ output:
 date: "2023-01-10"
 ---
 
+<img src= "https://wallpapercave.com/wp/wp2381382.jpg" width="950" height="500" /> 
+
 ## Assignments
 
 [Assignment 1](Assignment_1.html)  
@@ -17,6 +19,7 @@ date: "2023-01-10"
 [Assignment 6](Assignment_6.1.html)     
 [Assignment 7](Assignment_7.html)   
 [Assignment 8](Assignment_8.html)
+[Assignment_9](Assignment_9.html)
 
 ## Weekly Assignments    
 [Assignment 1](Weekly_Assignment_1.html)       
@@ -24,11 +27,9 @@ date: "2023-01-10"
 [Assignment 3](Weekly_Assignment_3.html)
 
 
-## Notes
+## [Final Project](Final_Project.html)
 
-[Jan 12, 2023](2023-01-12-Scripting-in-R.html)  
-[Jan 17, 2023](2023-01-17-Data-Structures.html)  
-[Jan 19, 2023](2021-01-19-Matrices-and-DFs-Functions.html)
+
 
 
 
