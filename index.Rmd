@@ -9,6 +9,8 @@ date: "2023-01-10"
 
 <img src= "https://wallpapercave.com/wp/wp2381382.jpg" width="950" height="500" /> 
 
+Hi! This is my webpage for Reproducible Biology in R. A little about me is that I want to own a farm one day and I loveeee any dessert with apples in them. Thanks for taking time to look at my page!
+
 ## Assignments
 
 [Assignment 1](Assignment_1.html)  
@@ -18,8 +20,8 @@ date: "2023-01-10"
 [Assignment 5](Assignment_5.html)  
 [Assignment 6](Assignment_6.1.html)     
 [Assignment 7](Assignment_7.html)   
-[Assignment 8](Assignment_8.html)
-[Assignment_9](Assignment_9.html)
+[Assignment 8](Assignment_8.1.html)    
+[Assignment 9](Assignment_9.html)
 
 ## Weekly Assignments    
 [Assignment 1](Weekly_Assignment_1.html)       
