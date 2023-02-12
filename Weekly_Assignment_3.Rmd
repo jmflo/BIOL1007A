@@ -14,27 +14,28 @@ glimpse(lobster)
 ```
 ```{r}
 library(ggthemes)
-p<- ggplot(data = lobster, aes(x = dist, +   
-  geom_point(aes(y = sample1), color = "red", size=1) +
-  geom_point(aes(y = sample2), color= "blue", size=1)) +
-    geom_point(color="black", size =1) +
-  ylab("Fst") + 
-  xlab("geographic distance (km)") + 
-    geom_smooth(method = "lm", se=FALSE, color="black", linetype = "dashed")
+#kpet getting error
+#p<- ggplot(data = lobster, aes(x = dist, +   
+ # geom_point(aes(y = sample1), color = "red", size=1) +
+ # geom_point(aes(y = sample2), color= "blue", size=1)) +
+ #   geom_point(color="black", size =1) +
+ # ylab("Fst") + 
+ # xlab("geographic distance (km)") + 
+ #   geom_smooth(method = "lm", se=FALSE, color="black", linetype = "dashed")
   
 
-p
+#p
     
 ```
 
 ```{r}
-b <- ggplot(data = lobster, aes(x = dist, y= cols(c(sample1, sample2)))) +
-  geom_point() +
-  ylab("Fst") + 
-  xlab("geographic distance (km)") +
-geom_smooth(method = "lm", se=FALSE, color="black", linetype = "dashed") +
-  theme_classic()
+#b <- ggplot(data = lobster, aes(x = dist, y= cols(c(sample1, sample2)))) +
+ # geom_point() +
+ # ylab("Fst") + 
+ # xlab("geographic distance (km)") +
+#geom_smooth(method = "lm", se=FALSE, color="black", linetype = "dashed") +
+ # theme_classic()
 
-b
+#b
 ```
 
